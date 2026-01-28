@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="text-start mb-4">
+    <a href="/" class="btn btn-sm btn-outline-light">← Back to Home</a>
+</div>
+
+<h2 class="display-4 fw-bold mb-5">{{ name.upper() }}</h2>
+
+<div class="row justify-content-center">
+    {% for sub in sub_items %}
+    <div class="col-auto">
+        <div class="category-card shadow">
+            <img src="{{ sub.img }}" class="tile-img">
+            <p class="mt-2 fw-bold mb-0 text-uppercase">{{ sub.name }}</p>
+            <button class="btn btn-sm btn-success mt-2 w-100">View Items</button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
