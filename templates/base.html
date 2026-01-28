@@ -1,0 +1,75 @@
+  <!DOCTYPE html>
+<html>
+<head>
+    <title>Mantra24</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { 
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+            url('https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=1920') center/cover fixed;
+            color: white; min-height: 100vh; display: flex; flex-direction: column;
+        }
+        .navbar { background: rgba(0,0,0,0.9) !important; border-bottom: 1px solid #444; }
+        
+        /* 2x2 Tiles */
+        .tile-img { width: 192px; height: 192px; object-fit: cover; border-radius: 12px; border: 2px solid rgba(255,255,255,0.3); transition: 0.3s; }
+        .category-card { background: rgba(0,0,0,0.6); padding: 15px; border-radius: 20px; width: 222px; margin: 10px; display: inline-block; transition: 0.3s; text-align: center; }
+        .category-card:hover { transform: translateY(-5px); background: rgba(0,0,0,0.85); border-color: white; }
+        
+        /* Orange About Bar */
+        .orange-footer { background-color: #ff8c00; color: #000; padding: 25px 0; margin-top: auto; font-weight: bold; border-top: 4px solid #cc7000; }
+        .footer-link { color: #000; text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-dark sticky-top">
+        <div class="container-fluid d-flex align-items-center">
+            <button class="btn btn-outline-light me-3" type="button" data-bs-toggle="offcanvas" data-bs-target="#sidebar">&#9776;</button>
+            <a class="navbar-brand fw-bold fs-3" href="/">MANTRA24</a>
+            <form class="d-flex mx-auto w-50">
+                <input class="form-control me-2 bg-dark text-white border-secondary" type="search" placeholder="Search products...">
+                <button class="btn btn-success" type="submit">Search</button>
+            </form>
+            <a href="#" class="btn btn-outline-light ms-auto">🛒 Cart (0)</a>
+        </div>
+    </nav>
+
+    <div class="offcanvas offcanvas-start bg-dark text-white" id="sidebar">
+        <div class="offcanvas-header border-bottom border-secondary">
+            <h5 class="offcanvas-title">Categories</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"></button>
+        </div>
+        <div class="offcanvas-body">
+            {% for key, val in categories.items() %}
+            <div class="mb-3">
+                <a href="{{ url_for('category_page', cat_id=key) }}" class="text-white text-decoration-none fw-bold">{{ val.name }}</a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div class="container mt-5 flex-grow-1 text-center">
+        {% block content %}{% endblock %}
+    </div>
+
+    <footer class="orange-footer text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3">
+                    <h5>ABOUT MANTRA24</h5>
+                    <p class="small mb-0">Mantra24 is your one-stop destination for premium shopping across electronics, fashion, and home essentials.</p>
+                </div>
+                <div class="col-md-4 mb-3 border-start border-end border-dark">
+                    <h5>HELPLINE</h5>
+                    <p class="mb-0">Customer Care: <strong>xxxxxxxxxx</strong></p>
+                </div>
+                <div class="col-md-4">
+                    <h5>CONTACT</h5>
+                    <p class="mb-0">Email: <a href="mailto:XXXXXXXX@mantra24.com" class="footer-link">XXXXXXXX@mantra24.com</a></p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
